@@ -1,0 +1,14 @@
+# Folder
+
+node_modules/
+.sass-cache/
+tests/
+
+# File
+
+.DS_Store
+Thumbs.db
+npm-debug.log
+*.css.map
+*.sass.map
+*.scss.map
