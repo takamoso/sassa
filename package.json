@@ -24,19 +24,12 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/register": "^7.10.4",
-    "core-js": "^3.6.5",
-    "gulp": "^4.0.2",
-    "gulp-plumber": "^1.2.1",
-    "gulp-sass": "^4.1.0",
-    "gulp-touch-cmd": "0.0.1",
-    "regenerator-runtime": "^0.13.5"
-  },
   "dependencies": {
     "browserslist": "^4.13.0",
     "node-sass": "^4.14.1"
+  },
+  "scripts": {
+    "build": "node-sass ./tests/style.scss ./tests/style.css --functions ./src/sassa.js -q",
+    "watch": "npm run build -- -w"
   }
 }
