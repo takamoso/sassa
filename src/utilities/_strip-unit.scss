@@ -1,0 +1,7 @@
+@function _strip-unit($number) {
+  @if _is-num($number) and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
