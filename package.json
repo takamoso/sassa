@@ -1,5 +1,5 @@
 {
-  "name": "sassa",
+  "name": "@takamoso/sassa",
   "version": "0.0.0",
   "description": "A powerful Sass Library.",
   "main": "src/sassa.scss",
