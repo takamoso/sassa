@@ -1,7 +1,9 @@
-@function _list-get($list, $indexes...) {
+@use 'sass:list';
+
+@function list-get($list, $indexes...) {
   @each $index in $indexes {
-    $index: if($index < 0, length($list) + $index + 1, $index);
-    $list: nth($list, $index);
+    $index: if($index < 0, list.length($list) + $index + 1, $index);
+    $list: list.nth($list, $index);
   }
 
   @return $list;

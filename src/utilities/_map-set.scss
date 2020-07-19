@@ -1,13 +1,17 @@
-@function _map-set($map, $keys...) {
-  $result: (nth($keys, -2): nth($keys, -1));
+@use 'sass:list';
+@use 'sass:map';
+@use './map-merge' as *;
 
-  @if length($keys) == 2 {
-    @return map-merge($map, $result);
+@function map-set($map, $keys...) {
+  $result: (list.nth($keys, -2): list.nth($keys, -1));
+
+  @if list.length($keys) == 2 {
+    @return map.merge($map, $result);
   }
 
-  @for $i from length($keys) - 2 through 1 {
-    $result: map-merge((nth($keys, $i): ()), (nth($keys, $i): $result));
+  @for $i from list.length($keys) - 2 through 1 {
+    $result: map.merge((list.nth($keys, $i): ()), (list.nth($keys, $i): $result));
   }
 
-  @return _map-merge($map, $result);
+  @return map-merge($map, $result);
 }

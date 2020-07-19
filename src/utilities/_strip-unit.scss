@@ -1,5 +1,8 @@
-@function _strip-unit($number) {
-  @if _is-num($number) and not unitless($number) {
+@use 'sass:math';
+@use './is-num' as *;
+
+@function strip-unit($number) {
+  @if is-num($number) and not math.is-unitless($number) {
     @return $number / ($number * 0 + 1);
   }
 

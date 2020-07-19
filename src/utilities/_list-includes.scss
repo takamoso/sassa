@@ -1,3 +1,5 @@
-@function _list-includes($list, $value) {
-  @return index($list, $value) != null;
+@use 'sass:list';
+
+@function list-includes($list, $value) {
+  @return list.index($list, $value) != null;
 }

@@ -1,5 +1,7 @@
-@function _list-slice($list, $start: 1, $end: length($list)) {
-  $length: length($list);
+@use 'sass:list';
+
+@function list-slice($list, $start: 1, $end: list.length($list)) {
+  $length: list.length($list);
 
   @if $length == 0 {
     @return $list;
@@ -18,7 +20,7 @@
   $result: ();
 
   @for $i from $start through $end {
-    $result: append($result, nth($list, $i));
+    $result: list.append($result, list.nth($list, $i));
   }
 
   @return $result;

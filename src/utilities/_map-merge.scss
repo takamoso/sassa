@@ -1,12 +1,16 @@
-@function _map-merge($map...) {
-  $target: nth($map, 1);
+@use 'sass:list';
+@use 'sass:map';
+@use './is-map' as *;
 
-  @for $i from 2 through length($map) {
-    @each $key, $value in nth($map, $i) {
-      @if (_is-map(map-get($target, $key)) and _is-map($value)) {
-        $target: map-merge($target, ($key: _map-merge(map-get($target, $key), $value)));
+@function map-merge($map...) {
+  $target: list.nth($map, 1);
+
+  @for $i from 2 through list.length($map) {
+    @each $key, $value in list.nth($map, $i) {
+      @if (is-map(map.get($target, $key)) and is-map($value)) {
+        $target: map.merge($target, ($key: map-merge(map.get($target, $key), $value)));
       } @else {
-        $target: map-merge($target, ($key: $value));
+        $target: map.merge($target, ($key: $value));
       }
     }
   }

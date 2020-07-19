@@ -1,3 +1,3 @@
-@function _is-list($value) {
+@function is-list($value) {
   @return type-of($value) == 'list' or type-of($value) == 'arglist';
 }

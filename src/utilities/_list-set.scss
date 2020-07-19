@@ -1,19 +1,21 @@
-@function _list-set($list, $indexes...) {
+@use 'sass:list';
+
+@function list-set($list, $indexes...) {
   $result: $list,;
 
-  @if length($indexes) == 2 {
-    @return set-nth($list, nth($indexes, 1), nth($indexes, -1));
+  @if list.length($indexes) == 2 {
+    @return list.set-nth($list, list.nth($indexes, 1), list.nth($indexes, -1));
   }
 
-  @for $i from 1 through length($indexes) - 2 {
-    $index: nth($indexes, $i);
-    $result: append($result, nth($list, $index), space);
-    $list: nth($list, $index);
+  @for $i from 1 through list.length($indexes) - 2 {
+    $index: list.nth($indexes, $i);
+    $result: list.append($result, list.nth($list, $index), space);
+    $list: list.nth($list, $index);
   }
 
-  @for $i from length($result) through 1 {
-    $index: nth($indexes, $i);
-    $result: set-nth($result, $i, set-nth(nth($result, $i), $index, if($i == length($result), nth($indexes, -1), nth($result, $i + 1))));
+  @for $i from list.length($result) through 1 {
+    $index: list.nth($indexes, $i);
+    $result: list.set-nth($result, $i, list.set-nth(list.nth($result, $i), $index, if($i == list.length($result), list.nth($indexes, -1), list.nth($result, $i + 1))));
   }
 
   @return nth($result, 1);

@@ -1,3 +1,5 @@
-@function _str-includes($string, $value) {
-  @return str-index($string, $value) != null;
+@use 'sass:string';
+
+@function str-includes($string, $value) {
+  @return string.index($string, $value) != null;
 }

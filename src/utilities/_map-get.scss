@@ -1,10 +1,12 @@
-@function _map-get($map, $keys...) {
+@use 'sass:map';
+
+@function map-get($map, $keys...) {
   @each $key in $keys {
-    @if not map-has-key($map, $key) {
+    @if not map.has-key($map, $key) {
       @return null;
     }
     
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
 
   @return $map;

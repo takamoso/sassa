@@ -1,14 +1,17 @@
-@function _str-split($string, $separator: null, $limit: null) {
+@use 'sass:string';
+@use 'sass:list';
+
+@function str-split($string, $separator: null, $limit: null) {
   @if not $separator {
     @return $string;
   }
 
   $list: ();
-  $limit: if($limit and 0 < $limit and $limit <= str-length($string), $limit, str-length($string));
+  $limit: if($limit and 0 < $limit and $limit <= string.length($string), $limit, string.length($string));
 
   @if $separator == '' {
     @for $i from 1 through $limit {
-      $list: append($list, str-slice($string, $i, $i));
+      $list: list.append($list, string.slice($string, $i, $i));
     }
 
     @return $list;
@@ -18,18 +21,18 @@
   $count: 0;
 
   @while $flag {
-    $index: str-index($string, $separator);
+    $index: string.index($string, $separator);
 
     @if $index {
-      $list: append($list, str-slice($string, 1, $index - 1));
-      $string: str-slice($string, $index + str-length($separator));
+      $list: list.append($list, string.slice($string, 1, $index - 1));
+      $string: string.slice($string, $index + string.length($separator));
       $count: $count + 1;
 
       @if $count == $limit {
         $flag: false;
       }
     } @else {
-      $list: append($list, $string);
+      $list: list.append($list, $string);
       $flag: false;
     }
   }
@@ -38,7 +41,7 @@
 
   @each $item in $list {
     @if $item != '' {
-      $result: append($result, $item);
+      $result: list.append($result, $item);
     }
   }
 

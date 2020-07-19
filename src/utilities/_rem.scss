@@ -1,13 +1,17 @@
-@function _rem($values, $base: 16px) {
-  @if length($values) == 1 and unit($values) != 'px' {
+@use 'sass:list';
+@use 'sass:math';
+@use './strip-unit' as *;
+
+@function rem($values, $base: 16px) {
+  @if list.length($values) == 1 and math.unit($values) != 'px' {
     @return $values;
   }
 
   $result: ();
   
   @each $value in $values {
-    $result: append($result, if(_strip-unit($value) == 0, 0, if(unit($value) == 'px', _strip-unit($value) / _strip-unit($base) * 1rem, $value)));
+    $result: list.append($result, if(strip-unit($value) == 0, 0, if(math.unit($value) == 'px', strip-unit($value) / strip-unit($base) * 1rem, $value)));
   }
 
-  @return if(length($values) == 1, nth($result, 1), $result);
+  @return if(list.length($values) == 1, list.nth($result, 1), $result);
 }
