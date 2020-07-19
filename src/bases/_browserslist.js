@@ -1,4 +1,4 @@
-const sass = require('node-sass')
+const sass = require('sass')
 const browserslist = require('browserslist')
 
 module.exports = {
